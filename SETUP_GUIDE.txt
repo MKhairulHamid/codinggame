@@ -1,0 +1,230 @@
+========================================
+LTU HTML5 GENERATOR - SETUP GUIDE
+========================================
+
+BEFORE YOU START - IMPORTANT!
+------------------------------
+You MUST update your student information in these 3 files:
+
+1. components/Header.tsx
+   - Line 9: const STUDENT_NUMBER = '12345678';
+   - Replace '12345678' with YOUR student number
+
+2. components/Footer.tsx
+   - Line 5: const STUDENT_NAME = 'Your Name';
+   - Line 6: const STUDENT_NUMBER = '12345678';
+   - Replace with YOUR name and student number
+
+3. app/about/page.tsx
+   - Line 8: const STUDENT_NAME = 'Your Name';
+   - Line 9: const STUDENT_NUMBER = '12345678';
+   - Replace with YOUR name and student number
+
+
+INSTALLATION STEPS
+------------------
+
+1. Open Terminal/Command Prompt
+
+2. Navigate to the project folder:
+   cd ltu-html-generator
+
+3. Install dependencies:
+   npm install
+
+4. Start development server:
+   npm run dev
+
+5. Open your browser and go to:
+   http://localhost:3000
+
+
+FEATURES OVERVIEW
+-----------------
+
+✅ HOME PAGE (/)
+   - Generate basic HTML5 templates
+   - Copy code to clipboard
+   - View available features
+
+✅ ABOUT PAGE (/about)
+   - Your student information
+   - Video tutorial placeholder
+   - Project features list
+
+✅ TABS GENERATOR (/tabs)
+   - Create custom tabbed interfaces
+   - Add/remove tabs
+   - Configure tab titles and content
+   - Generate HTML5 + CSS + JS code
+   - Copy for MOODLE deployment
+
+✅ ESCAPE ROOM (/escape-room)
+   - Set custom timer (in minutes)
+   - 4 coding challenge stages:
+     * Stage 1: Format code correctly
+     * Stage 2: Debug the code
+     * Stage 3: Generate numbers 0-1000
+     * Stage 4: Transform CSV to JSON
+   - Hint system available
+   - Track progress
+   - Win by completing all stages!
+
+✅ CODING RACES (/coding-races)
+   - Coming soon placeholder
+
+✅ COURT ROOM (/court-room)
+   - Coming soon placeholder
+
+
+THEME & ACCESSIBILITY
+---------------------
+
+🌙 Dark/Light Mode Toggle
+   - Click sun/moon icon in header
+   - Automatically detects browser preference
+   - Saves your preference
+
+🍔 Hamburger Menu
+   - Responsive mobile menu
+   - Click to expand/collapse on mobile
+
+🍪 Cookie Memory
+   - Remembers last visited page
+   - Automatic navigation tracking
+
+♿ Accessibility
+   - ARIA labels on all interactive elements
+   - Keyboard navigation support
+   - Screen reader friendly
+   - Semantic HTML5
+
+
+HOW TO USE GENERATED CODE
+--------------------------
+
+1. Go to any generator page (e.g., Tabs)
+2. Configure your options
+3. Click "Generate Code"
+4. Click "Copy Code" button
+5. Create a new file: example.html
+6. Paste the code
+7. Open in browser OR upload to MOODLE
+8. The code works standalone - no external files needed!
+
+
+ESCAPE ROOM TIPS
+----------------
+
+Stage 1 - Format Code:
+- Add proper line breaks
+- Use indentation (2 spaces or tabs)
+- Make it readable
+
+Stage 2 - Debug Code:
+- Find the bug in the function
+- The function should ADD, not subtract
+
+Stage 3 - Generate Numbers:
+- Use a for loop
+- Loop from 0 to 1000
+- Include console.log or similar
+
+Stage 4 - Data Transform:
+- Convert CSV format to JSON
+- Create array of objects
+- Match the expected format
+
+
+TROUBLESHOOTING
+---------------
+
+Problem: npm command not found
+Solution: Install Node.js from nodejs.org
+
+Problem: Port 3000 already in use
+Solution: Use: npm run dev -- -p 3001
+         (This runs on port 3001 instead)
+
+Problem: Theme not working
+Solution: Clear browser cache and reload
+
+Problem: Code won't copy
+Solution: Check browser clipboard permissions
+
+
+BUILD FOR PRODUCTION
+--------------------
+
+To create a production build:
+
+1. npm run build
+2. npm start
+
+The app will be optimized and ready for deployment.
+
+
+ASSIGNMENT CHECKLIST
+--------------------
+
+Part 1 Requirements:
+✅ Next.js with create-next-app
+✅ Home page with code generator
+✅ About page with student info
+✅ Student number in top-left corner
+✅ Header with hamburger menu
+✅ Dark/Light theme toggle
+✅ Footer with student details
+✅ Accessibility compliance
+✅ Cookie-based navigation memory
+✅ Tabs generator page
+✅ Placeholder pages (Coding Races, Court Room)
+
+Part 2 Requirements:
+✅ Escape Room page
+✅ Manual timer configuration
+✅ Custom background/theme
+✅ Multiple coding stages (4 stages)
+✅ Format code challenge
+✅ Debug code challenge
+✅ Generate numbers challenge
+✅ Data transformation challenge
+
+
+TECHNOLOGIES USED
+-----------------
+
+- Next.js 15 (React Framework)
+- TypeScript (Type Safety)
+- CSS Modules (Scoped Styling)
+- React Context (State Management)
+- HTML5 (Modern Standards)
+- Accessibility (WCAG Compliant)
+
+
+SUPPORT
+-------
+
+If you encounter issues:
+1. Check this guide
+2. Review the README.md file
+3. Check browser console for errors
+4. Ensure all dependencies are installed
+5. Try clearing browser cache
+
+
+FINAL NOTES
+-----------
+
+- Remember to update student information!
+- Test all features before submission
+- Generated HTML works in any browser
+- All code is self-contained (inline CSS)
+- Mobile responsive design included
+- Accessibility features built-in
+
+
+Good luck with your assignment! 🚀
+
+========================================
+

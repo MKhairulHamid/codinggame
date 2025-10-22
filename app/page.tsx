@@ -1,103 +1,136 @@
-import Image from "next/image";
+'use client';
+
+import React, { useState } from 'react';
+import styles from './page.module.css';
+
+export const dynamic = 'force-dynamic';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [generatedCode, setGeneratedCode] = useState('');
+  const [copied, setCopied] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const generateBasicHTML = () => {
+    const code = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #0070f3;
+            padding-bottom: 10px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Generated HTML</h1>
+        <p>This is a basic HTML5 page with inline CSS styling.</p>
+        <p>You can copy this code and paste it into a .html file to view it in a browser.</p>
+    </div>
+    
+    <script>
+        console.log('HTML5 page loaded successfully!');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded');
+        });
+    </script>
+</body>
+</html>`;
+    setGeneratedCode(code);
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(generatedCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>LTU HTML5 Code Generator</h1>
+      <p className={styles.description}>
+        Generate HTML5 code with inline CSS and JavaScript for MOODLE LMS deployment.
+      </p>
+
+      <div className={styles.section}>
+        <h2>Quick Start</h2>
+        <p>Click the button below to generate a basic HTML5 template:</p>
+        <button 
+          className={styles.button}
+          onClick={generateBasicHTML}
+          aria-label="Generate HTML code"
+        >
+          Generate Basic HTML
+        </button>
+      </div>
+
+      {generatedCode && (
+        <div className={styles.outputSection}>
+          <div className={styles.outputHeader}>
+            <h3>Generated Code</h3>
+            <button 
+              className={styles.copyButton}
+              onClick={copyToClipboard}
+              aria-label="Copy code to clipboard"
+            >
+              {copied ? '✓ Copied!' : '📋 Copy Code'}
+            </button>
+          </div>
+          <pre className={styles.codeBlock}>
+            <code>{generatedCode}</code>
+          </pre>
+          <p className={styles.hint}>
+            💡 Copy this code and paste it into a file named <code>index.html</code> to view it in your browser.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
+
+      <div className={styles.features}>
+        <h2>Available Generators</h2>
+        <div className={styles.featureGrid}>
+          <div className={styles.featureCard}>
+            <h3>📑 Tabs Generator</h3>
+            <p>Create interactive tabbed content with HTML5 and JavaScript</p>
+          </div>
+          <div className={styles.featureCard}>
+            <h3>🚪 Escape Room</h3>
+            <p>Code your way out with programming challenges</p>
+          </div>
+          <div className={styles.featureCard}>
+            <h3>🏁 Coding Races</h3>
+            <p>Coming soon - competitive coding challenges</p>
+          </div>
+          <div className={styles.featureCard}>
+            <h3>⚖️ Court Room</h3>
+            <p>Coming soon - legal case simulations</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

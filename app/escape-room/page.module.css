@@ -1,0 +1,573 @@
+.container {
+  min-height: calc(100vh - 200px);
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.headerSection {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid #444;
+}
+
+.escapeRoom {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid #444;
+  min-height: 500px;
+  position: relative;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.timerSection {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.timerDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.timerLabel {
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.timerValue {
+  font-size: 3rem;
+  color: #4CAF50;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.timerDanger {
+  color: #f44336;
+  animation: pulse 1s infinite;
+  text-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.timerControls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.timeInputGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timeInputGroup label {
+  color: #fff;
+  font-weight: 500;
+}
+
+.timeInput {
+  padding: 0.5rem 1rem;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  width: 100px;
+}
+
+.timeInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.startButton,
+.pauseButton,
+.resetButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.startButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.startButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.pauseButton {
+  background-color: #ff9800;
+  color: white;
+}
+
+.pauseButton:hover {
+  background-color: #e68900;
+  transform: translateY(-2px);
+}
+
+.resetButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.resetButton:hover {
+  background-color: #da190b;
+  transform: translateY(-2px);
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.messageSuccess {
+  background-color: rgba(76, 175, 80, 0.2);
+  border: 2px solid #4CAF50;
+  color: #4CAF50;
+}
+
+.messageError {
+  background-color: rgba(244, 67, 54, 0.2);
+  border: 2px solid #f44336;
+  color: #f44336;
+}
+
+.messageVictory {
+  background-color: rgba(255, 215, 0, 0.2);
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px #FFD700; }
+  to { box-shadow: 0 0 20px #FFD700; }
+}
+
+.messageInfo {
+  background-color: rgba(33, 150, 243, 0.2);
+  border: 2px solid #2196F3;
+  color: #2196F3;
+}
+
+.challengeSection {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stageProgress {
+  margin-bottom: 2rem;
+  color: #fff;
+  text-align: center;
+}
+
+.stageProgress span {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.progressBar {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  transition: width 0.5s ease;
+}
+
+.challenge h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.lockImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  min-height: 200px;
+}
+
+.lockImage {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));
+  border: 3px solid #FFD700;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.lockImage:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  border-color: #FFA500;
+}
+
+.lockImage:active {
+  transform: scale(0.98);
+}
+
+.lockIcon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: lockShake 2s infinite;
+}
+
+@keyframes lockShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.lockImage p {
+  color: #FFD700;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.challengeCode {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #555;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.challengeCode h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.challengeCode pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+.challengeCode code {
+  color: #4CAF50;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.editorSection {
+  margin-bottom: 1.5rem;
+}
+
+.editorSection h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.codeEditor {
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: #4CAF50;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.codeEditor:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.submitButton,
+.hintButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submitButton {
+  background-color: #2196F3;
+  color: white;
+  flex: 1;
+}
+
+.submitButton:hover {
+  background-color: #0b7dda;
+  transform: translateY(-2px);
+}
+
+.hintButton {
+  background-color: #ff9800;
+  color: white;
+}
+
+.hintButton:hover {
+  background-color: #e68900;
+  transform: translateY(-2px);
+}
+
+.hint {
+  background-color: rgba(255, 152, 0, 0.2);
+  border: 2px solid #ff9800;
+  padding: 1rem;
+  border-radius: 6px;
+  color: #ffb74d;
+}
+
+.victorySection,
+.gameOverSection {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 2px solid #4CAF50;
+}
+
+.gameOverSection {
+  border-color: #f44336;
+}
+
+.victorySection h2,
+.gameOverSection h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.victorySection p,
+.gameOverSection p {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.playAgainButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.playAgainButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.clickableObjectContainer {
+  position: relative;
+  min-height: 500px;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clickableObject {
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  padding: 2rem;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.15) 50%, transparent 70%);
+  border-radius: 50%;
+  min-width: 150px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.clickableObject:hover {
+  transform: translate(-50%, -50%) scale(1.15) !important;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 50%, transparent 70%);
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+}
+
+.clickableObject:active {
+  transform: translate(-50%, -50%) scale(0.95) !important;
+}
+
+.glowingIcon {
+  font-size: 4rem;
+  animation: glowPulse 2s infinite;
+  filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.9));
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.9));
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 45px rgba(255, 215, 0, 1));
+  }
+}
+
+.clickPrompt {
+  color: #FFD700;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 0.8rem;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .headerSection {
+    padding: 1.5rem;
+  }
+
+  .escapeRoom {
+    padding: 1.5rem;
+    min-height: 400px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .timerValue {
+    font-size: 2rem;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .submitButton {
+    flex: none;
+  }
+
+  .clickableObjectContainer {
+    min-height: 400px;
+  }
+
+  .clickableObject {
+    min-width: 120px;
+    min-height: 120px;
+    padding: 1.5rem;
+  }
+
+  .glowingIcon {
+    font-size: 3rem;
+  }
+
+  .clickPrompt {
+    font-size: 0.9rem;
+  }
+}
+
