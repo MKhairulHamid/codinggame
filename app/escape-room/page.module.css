@@ -449,6 +449,90 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Leaderboard styles */
+.leaderboardButton {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.leaderboardButton:hover {
+  background-color: #f57c00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leaderboardSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 2px solid #ff9800;
+}
+
+.leaderboardSection h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.leaderboardTable thead {
+  background-color: rgba(255, 152, 0, 0.2);
+}
+
+.leaderboardTable th,
+.leaderboardTable td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.leaderboardTable th {
+  font-weight: bold;
+  color: #ff9800;
+}
+
+.leaderboardTable tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.usernamePrompt {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.usernamePrompt label {
+  color: #fff;
+  font-weight: bold;
+}
+
+.usernameInput {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #0070f3;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
 .clickableObjectContainer {
   position: relative;
   min-height: 500px;

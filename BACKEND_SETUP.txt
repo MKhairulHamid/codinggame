@@ -1,0 +1,206 @@
+================================================================================
+ESCAPE ROOM BACKEND SETUP GUIDE
+================================================================================
+
+This guide will help you set up the PostgreSQL database and Prisma backend
+for the Escape Room feature.
+
+================================================================================
+PREREQUISITES
+================================================================================
+
+1. PostgreSQL installed and running on your system
+   - Download from: https://www.postgresql.org/download/
+   - Default port: 5432
+
+2. Node.js and npm installed (already have this)
+
+================================================================================
+STEP 1: CREATE POSTGRESQL DATABASE
+================================================================================
+
+Open pgAdmin 4 and create a local server connection (if not already set up):
+
+1. In the left sidebar, right-click on "Servers"
+2. Select "Register" > "Server..."
+3. In the "General" tab, enter a name (e.g., "Local PostgreSQL")
+4. In the "Connection" tab:
+   - Host: localhost
+   - Port: 5432
+   - Username: postgres
+   - Password: [your postgres password]
+5. Click "Save"
+
+Now create the database:
+
+1. Expand "Servers" > "Local PostgreSQL" (or your server name)
+2. Right-click on "Databases"
+3. Select "Create" > "Database..."
+4. Enter "escape_room_db" as the database name
+5. Click "Save"
+
+Alternatively, use the Query Tool in pgAdmin 4:
+- Right-click on your local server
+- Select "Query Tool"
+- Run:
+
+  CREATE DATABASE escape_room_db;
+
+Or use the command line:
+
+  psql -U postgres
+  CREATE DATABASE escape_room_db;
+  \q
+
+================================================================================
+STEP 2: CONFIGURE DATABASE CONNECTION
+================================================================================
+
+1. Copy .env.example to .env (if not already done):
+   
+   Copy-Item .env.example .env
+
+2. Edit .env file and update the DATABASE_URL with your PostgreSQL credentials:
+
+   DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/escape_room_db?schema=public"
+
+   Replace:
+   - USERNAME: your PostgreSQL username (default: postgres)
+   - PASSWORD: your PostgreSQL password
+
+================================================================================
+STEP 3: RUN DATABASE MIGRATIONS
+================================================================================
+
+1. Generate Prisma Client (already done during npm install):
+   
+   npm run prisma:generate
+
+2. Create and run the initial migration:
+   
+   npx prisma migrate dev --name init
+
+   This will:
+   - Create the database tables (users, stages, game_sessions, stage_attempts, leaderboard)
+   - Apply the schema to your database
+
+================================================================================
+STEP 4: SEED THE DATABASE
+================================================================================
+
+Populate the database with initial stage data:
+
+  npm run prisma:seed
+
+This will create the 4 escape room stages from the frontend.
+
+================================================================================
+STEP 5: VERIFY SETUP
+================================================================================
+
+1. Open Prisma Studio to view your database:
+   
+   npm run prisma:studio
+
+   This opens a browser interface at http://localhost:5555
+
+2. Check that:
+   - All tables exist (User, Stage, GameSession, StageAttempt, Leaderboard)
+   - 4 stages are populated in the Stage table
+
+================================================================================
+STEP 6: START THE DEVELOPMENT SERVER
+================================================================================
+
+  npm run dev
+
+The application will be available at http://localhost:3000
+
+================================================================================
+API ENDPOINTS
+================================================================================
+
+Users:
+  GET    /api/users           - List all users
+  POST   /api/users           - Create user
+  GET    /api/users/:id       - Get user by ID
+
+Stages:
+  GET    /api/stages          - Get all stages
+  GET    /api/stages/:id      - Get stage by ID
+  POST   /api/stages          - Create stage (admin)
+  PUT    /api/stages/:id      - Update stage (admin)
+  DELETE /api/stages/:id      - Delete stage (admin)
+
+Sessions:
+  GET    /api/sessions        - Get all sessions
+  POST   /api/sessions        - Start new session
+  GET    /api/sessions/:id    - Get session details
+  PUT    /api/sessions/:id    - Update session
+  GET    /api/sessions/user/:userId - Get user sessions
+
+Attempts:
+  POST   /api/attempts        - Record attempt
+  GET    /api/attempts/session/:sessionId - Get session attempts
+
+Leaderboard:
+  GET    /api/leaderboard     - Get top times
+  POST   /api/leaderboard     - Add entry
+  GET    /api/leaderboard/user/:userId - Get user's best
+
+================================================================================
+TESTING THE API
+================================================================================
+
+You can test the API endpoints using:
+
+1. Browser (for GET requests):
+   http://localhost:3000/api/stages
+
+2. Postman or Thunder Client (VS Code extension)
+
+3. curl commands:
+   
+   # Get all stages
+   curl http://localhost:3000/api/stages
+
+   # Create a user
+   curl -X POST http://localhost:3000/api/users \
+     -H "Content-Type: application/json" \
+     -d '{"username":"testuser","email":"test@example.com"}'
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+1. "Can't reach database server"
+   - Make sure PostgreSQL is running
+   - Check your DATABASE_URL in .env
+   - Verify PostgreSQL is listening on port 5432
+
+2. "Prisma Client not generated"
+   - Run: npm run prisma:generate
+
+3. "Migration failed"
+   - Drop the database and recreate it
+   - Run migrations again
+
+4. Reset database (WARNING: deletes all data):
+   
+   npx prisma migrate reset
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+The frontend (app/escape-room/page.tsx) needs to be updated to:
+1. Fetch stages from API instead of hardcoded array
+2. Create sessions when timer starts
+3. Record attempts when checking solutions
+4. Submit completion times to leaderboard
+5. Display leaderboard
+
+See the frontend integration code in the updated page.tsx file.
+
+================================================================================
+

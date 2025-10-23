@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions     GameSession[]
+  leaderboards Leaderboard[]
+
+  @@map("users")
+}
+
+model Stage {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  type        String // 'code-format' | 'debug' | 'generate-numbers' | 'data-transform'
+  challenge   String   @db.Text
+  solution    String   @db.Text
+  hint        String   @db.Text
+  order       Int      @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  attempts StageAttempt[]
+
+  @@map("stages")
+}
+
+model GameSession {
+  id            String    @id @default(cuid())
+  userId        String
+  startTime     DateTime  @default(now())
+  endTime       DateTime?
+  completed     Boolean   @default(false)
+  totalTime     Int? // in seconds
+  timerDuration Int // in seconds (e.g., 1800 for 30 minutes)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attempts StageAttempt[]
+
+  @@index([userId])
+  @@map("game_sessions")
+}
+
+model StageAttempt {
+  id          String   @id @default(cuid())
+  sessionId   String
+  stageId     Int
+  userCode    String   @db.Text
+  successful  Boolean  @default(false)
+  hintsUsed   Int      @default(0)
+  attemptedAt DateTime @default(now())
+
+  session GameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  stage   Stage       @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([stageId])
+  @@map("stage_attempts")
+}
+
+model Leaderboard {
+  id             String   @id @default(cuid())
+  userId         String
+  completionTime Int // in seconds
+  completedAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([completionTime])
+  @@map("leaderboard")
+}
+
